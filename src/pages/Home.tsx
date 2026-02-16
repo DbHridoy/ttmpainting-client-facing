@@ -3,6 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import heroImage from "@/assets/hero-exterior-painting.jpg";
+import blueHouseBefore from "@/assets/blue-house-before.jpg";
+import blueHouseAfter from "@/assets/blue-house-after.jpg";
+import beigeHouseBefore from "@/assets/beige-house-before.jpg";
+import beigeHouseAfter from "@/assets/beige-house-after.jpg";
+import grayRanchBefore from "@/assets/gray-ranch-before.jpg";
+import grayRanchAfter from "@/assets/gray-ranch-after.jpg";
+import greenGarageBefore from "@/assets/green-garage-before.jpg";
+import greenGarageAfter from "@/assets/green-garage-after.jpg";
 import {
   Shield,
   Award,
@@ -216,7 +224,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-0">
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/blue-house-before.jpg"
+                    src={blueHouseBefore}
                     alt="House exterior before painting transformation"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -226,7 +234,7 @@ export default function Home() {
                 </div>
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/blue-house-after.jpg"
+                    src={blueHouseAfter}
                     alt="Beautiful blue house exterior after painting"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -246,7 +254,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-0">
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/beige-house-before.jpg"
+                    src={beigeHouseBefore}
                     alt="House exterior before professional painting service"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -256,7 +264,7 @@ export default function Home() {
                 </div>
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/beige-house-after.jpg"
+                    src={beigeHouseAfter}
                     alt="Modern beige house exterior after professional painting"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -276,7 +284,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-0">
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/gray-ranch-before.jpg"
+                    src={grayRanchBefore}
                     alt="Ranch home before exterior painting"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -286,7 +294,7 @@ export default function Home() {
                 </div>
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/gray-ranch-after.jpg"
+                    src={grayRanchAfter}
                     alt="Beautiful gray ranch home after painting"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -306,7 +314,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-0">
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/green-garage-before.jpg"
+                    src={greenGarageBefore}
                     alt="Weathered garage before painting restoration"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -316,7 +324,7 @@ export default function Home() {
                 </div>
                 <div className="relative aspect-square overflow-hidden">
                   <img
-                    src="/src/assets/green-garage-after.jpg"
+                    src={greenGarageAfter}
                     alt="Freshly painted green garage exterior"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
