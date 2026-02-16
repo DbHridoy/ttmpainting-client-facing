@@ -71,7 +71,6 @@ const processSteps = [
   }
 ];
 
-
 export default function Home() {
   return (
     <main>
@@ -367,7 +366,7 @@ export default function Home() {
       </section>
 
 
-      {/* Jobber Form Section */}
+      {/* Estimate CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -377,14 +376,17 @@ export default function Home() {
                 Get your free, detailed estimate today. No pressure, just honest pricing and expert advice.
               </p>
             </div>
-
-            {/* Jobber Form Embed */}
-            <div className="bg-background rounded-2xl shadow-strong p-8 border border-border/50 hover:shadow-lg transition-shadow duration-300">
-              <div id="3f2be4ce-f6a2-414c-95b4-8211aaed3546"></div>
-              <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
-              <div dangerouslySetInnerHTML={{
-                __html: `<script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js" clienthub_id="3f2be4ce-f6a2-414c-95b4-8211aaed3546" form_url="https://clienthub.getjobber.com/client_hubs/3f2be4ce-f6a2-414c-95b4-8211aaed3546/public/work_request/embedded_work_request_form"></script>`
-              }} />
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in stagger-2">
+              <Button
+                size="lg"
+                className="group text-lg px-8 py-6 font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
+                asChild
+              >
+                <Link to="/get-estimate">
+                  Get Your Free Estimate
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

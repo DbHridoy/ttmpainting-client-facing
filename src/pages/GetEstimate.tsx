@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Clock, Shield, Phone, Mail, MapPin } from "lucide-react";
 import RequiredMark from "@/components/common/RequiredMark";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import ClientNote from "@/components/common/ClientNote";
 import { useCreateClientMutation, useAddNoteMutation } from "@/redux/api/clientApi";
@@ -25,12 +25,20 @@ const benefits = [
   }
 ];
 
+const JOBBER_CLIENT_HUB_ID = "3f2be4ce-f6a2-414c-95b4-8211aaed3546";
+const JOBBER_SCRIPT_SRC =
+  "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
+const JOBBER_STYLE_HREF =
+  "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
+const JOBBER_FORM_URL =
+  "https://clienthub.getjobber.com/client_hubs/3f2be4ce-f6a2-414c-95b4-8211aaed3546/public/work_request/embedded_work_request_form";
 
 export default function GetEstimate() {
   const navigate = useNavigate();
   const [createClient, { isLoading }] = useCreateClientMutation();
   const [addNote] = useAddNoteMutation();
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [note, setNote] = useState("");
   const [noteFile, setNoteFile] = useState(null);
   const [formData, setFormData] = useState({
@@ -47,6 +55,35 @@ export default function GetEstimate() {
   });
 
   const leadSources = ["Door to Door", "Inbound", "Social"];
+  const fieldClassName =
+    "w-full rounded-lg border border-input bg-background px-3 py-2 text-sm sm:text-base";
+  const labelClassName = "mb-2 block text-sm font-semibold sm:text-base";
+
+  useEffect(() => {
+    const styleId = "jobber-work-request-style";
+    const scriptId = "jobber-work-request-script";
+
+    let linkEl = document.getElementById(styleId) as HTMLLinkElement | null;
+    if (!linkEl) {
+      linkEl = document.createElement("link");
+      linkEl.id = styleId;
+      linkEl.rel = "stylesheet";
+      linkEl.href = JOBBER_STYLE_HREF;
+      linkEl.media = "screen";
+      document.head.appendChild(linkEl);
+    }
+
+    const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = JOBBER_SCRIPT_SRC;
+      script.setAttribute("clienthub_id", JOBBER_CLIENT_HUB_ID);
+      script.setAttribute("form_url", JOBBER_FORM_URL);
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -68,7 +105,11 @@ export default function GetEstimate() {
     try {
       // 1️⃣ Create client
       const client = await createClient(formData).unwrap();
-      const clientId = client.data._id;
+      const clientId = client?.data?._id || client?._id || client?.id;
+
+      if (!clientId) {
+        throw new Error("Client created but no client id was returned");
+      }
 
       //console.log("Client from add client", client);
 
@@ -81,10 +122,11 @@ export default function GetEstimate() {
         await addNote({ clientId, formData: fd }).unwrap();
       }
 
-      toast.success("Client added successfully");
+      toast.success("Submitted successfully");
+      setIsSubmitted(true);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to create client");
+      toast.error("Failed to submit");
     }
   };
   return (
@@ -109,209 +151,168 @@ export default function GetEstimate() {
           {/* Main Form */}
           <div className="lg:col-span-2">
             <Card className="shadow-strong">
-              <CardHeader>
+              <CardHeader className="space-y-2">
                 <CardTitle className="text-2xl">Request Your Free Estimate</CardTitle>
                 <p className="text-muted-foreground">
                   Fill out the form below and we'll get back to you within 24 hours with a detailed estimate.
                 </p>
+                <div className="mt-6 text-center text-sm text-muted-foreground">
+                  <p>
+                    Your information is secure and will only be used to provide your estimate.
+                    We never share your personal information with third parties.
+                  </p>
+                </div>
               </CardHeader>
-              <CardContent>
-                {/* Jobber Form Embed */}
-                <div id="3f2be4ce-f6a2-414c-95b4-8211aaed3546"></div>
-                <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
-                <div dangerouslySetInnerHTML={{
-                  __html: `<script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js" clienthub_id="3f2be4ce-f6a2-414c-95b4-8211aaed3546" form_url="https://clienthub.getjobber.com/client_hubs/3f2be4ce-f6a2-414c-95b4-8211aaed3546/public/work_request/embedded_work_request_form"></script>`
-                }} />
+              <CardContent className="pt-0">
+                {isSubmitted ? (
+                  <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-center">
+                    <CheckCircle className="mx-auto mb-3 h-10 w-10 text-green-600" />
+                    <h3 className="text-xl font-semibold text-green-800">Estimate Request Submitted</h3>
+                    <p className="mt-2 text-sm text-green-700 sm:text-base">
+                      Thank you. Your request has been received, and our team will contact you soon.
+                    </p>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={handleCreateClient}
+                    className="space-y-6 rounded-xl border border-border bg-background p-4 sm:p-6"
+                  >
+                    {/* Client Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClassName}>
+                          Client Name <RequiredMark />
+                        </label>
+                        <input
+                          value={formData.clientName}
+                          onChange={(e) => handleInputChange("clientName", e.target.value)}
+                          className={fieldClassName}
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className={labelClassName}>
+                          Partner Name
+                        </label>
+                        <input
+                          value={formData.partnerName}
+                          onChange={(e) => handleInputChange("partnerName", e.target.value)}
+                          className={fieldClassName}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Contact */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClassName}>
+                          Phone <RequiredMark />
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.phoneNumber}
+                          onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                          className={fieldClassName}
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className={labelClassName}>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          className={fieldClassName}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Address */}
+                    <div className="space-y-4">
+                      <div>
+                        <label className={labelClassName}>
+                          Street Address <RequiredMark />
+                        </label>
+                        <input
+                          value={formData.address}
+                          onChange={(e) => handleInputChange("address", e.target.value)}
+                          className={fieldClassName}
+                          required
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                          <label className={labelClassName}>
+                            City <RequiredMark />
+                          </label>
+                          <input
+                            value={formData.city}
+                            onChange={(e) => handleInputChange("city", e.target.value)}
+                            className={fieldClassName}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label className={labelClassName}>
+                            State <RequiredMark />
+                          </label>
+                          <input
+                            value={formData.state}
+                            onChange={(e) => handleInputChange("state", e.target.value)}
+                            className={fieldClassName}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label className={labelClassName}>
+                            Zip Code <RequiredMark />
+                          </label>
+                          <input
+                            value={formData.zipCode}
+                            onChange={(e) => handleInputChange("zipCode", e.target.value)}
+                            className={fieldClassName}
+                            required
+                            inputMode="numeric"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+
+                    {/* Notes */}
+                    <ClientNote
+                      note={note}
+                      file={noteFile}
+                      onNoteChange={setNote}
+                      onFileChange={setNoteFile}
+                    />
+
+                    {/* Actions */}
+                    <div className="flex flex-col-reverse gap-3 border-t border-border pt-4 sm:flex-row sm:justify-end">
+                      <button
+                        type="button"
+                        onClick={() => navigate("/s/sales-rep/leads")}
+                        className="w-full rounded-lg border py-2 text-sm sm:w-auto sm:min-w-[140px] sm:text-base"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full rounded-lg bg-blue-600 py-2 text-sm text-white sm:w-auto sm:min-w-[140px] sm:text-base"
+                      >
+                        {isLoading ? "Submitting..." : "Submit"}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </CardContent>
             </Card>
 
-            {/* Privacy Note */}
-            <div className="mt-6 text-center text-sm text-muted-foreground">
-              <p>
-                Your information is secure and will only be used to provide your estimate.
-                We never share your personal information with third parties.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 text-center">
-                Add Lead
-              </h1>
-
-              <form
-                onSubmit={handleCreateClient}
-                className="space-y-6 bg-white section-pad border rounded-lg"
-              >
-                {/* Client Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm sm:text-base font-semibold mb-2">
-                      Client Name <RequiredMark />
-                    </label>
-                    <input
-                      value={formData.clientName}
-                      onChange={(e) => handleInputChange("clientName", e.target.value)}
-                      className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm sm:text-base font-semibold mb-2">
-                      Partner Name
-                    </label>
-                    <input
-                      value={formData.partnerName}
-                      onChange={(e) => handleInputChange("partnerName", e.target.value)}
-                      className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
-
-                {/* Contact */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm sm:text-base font-semibold mb-2">
-                      Phone <RequiredMark />
-                    </label>
-                    <input
-                      type="tel"
-                      value={formData.phoneNumber}
-                      onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
-                      className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm sm:text-base font-semibold mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
-
-                {/* Address */}
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm sm:text-base font-semibold mb-2">
-                      Street Address <RequiredMark />
-                    </label>
-                    <input
-                      value={formData.address}
-                      onChange={(e) => handleInputChange("address", e.target.value)}
-                      className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm sm:text-base font-semibold mb-2">
-                        City <RequiredMark />
-                      </label>
-                      <input
-                        value={formData.city}
-                        onChange={(e) => handleInputChange("city", e.target.value)}
-                        className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm sm:text-base font-semibold mb-2">
-                        State <RequiredMark />
-                      </label>
-                      <input
-                        value={formData.state}
-                        onChange={(e) => handleInputChange("state", e.target.value)}
-                        className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm sm:text-base font-semibold mb-2">
-                        Zip Code <RequiredMark />
-                      </label>
-                      <input
-                        value={formData.zipCode}
-                        onChange={(e) => handleInputChange("zipCode", e.target.value)}
-                        className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                        required
-                        inputMode="numeric"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Lead Source */}
-                <div>
-                  <label className="block text-sm sm:text-base font-semibold mb-2">
-                    Lead Source <RequiredMark />
-                  </label>
-                  <select
-                    value={formData.leadSource}
-                    onChange={(e) => handleInputChange("leadSource", e.target.value)}
-                    className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
-                    required
-                  >
-                    {leadSources.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Lead Rating */}
-                <div>
-                  <label className="block text-sm sm:text-base font-semibold mb-2">
-                    Lead Rating
-                  </label>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        onClick={() => handleInputChange("rating", star)}
-                        className="text-xl sm:text-2xl"
-                      >
-                        {star <= formData.rating ? "★" : "☆"}
-                      </button>
-                    ))}
-                    <span className="text-sm text-gray-600">{formData.rating}/5</span>
-                  </div>
-                </div>
-
-                {/* Notes */}
-                <ClientNote
-                  note={note}
-                  file={noteFile}
-                  onNoteChange={setNote}
-                  onFileChange={setNoteFile}
-                />
-
-                {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => navigate("/s/sales-rep/leads")}
-                    className="w-full sm:flex-1 border py-2 rounded-lg text-sm sm:text-base"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-full sm:flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm sm:text-base"
-                  >
-                    {isLoading ? "Saving..." : "Save Client"}
-                  </button>
-                </div>
-              </form>
-            </div>
           </div>
 
           {/* Sidebar */}

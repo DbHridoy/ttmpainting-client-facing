@@ -2,7 +2,7 @@ import React from "react";
 
 function ClientNote({ note, file, onNoteChange, onFileChange }) {
   return (
-    <div className="rounded-lg border section-pad space-y-4">
+    <div className="rounded-lg  section-pad space-y-4">
       <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
         Notes & Attachments
       </h3>
