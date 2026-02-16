@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, Mail } from "lucide-react";
+import ttmLogo from "@/assets/ttm-logo.png";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -52,7 +53,7 @@ export default function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <img 
-                src="/src/assets/ttm-logo.png" 
+                src={ttmLogo}
                 alt="TTM Painting Logo" 
                 className="h-12 w-12 mr-3"
               />

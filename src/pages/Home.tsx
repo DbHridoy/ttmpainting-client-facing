@@ -98,7 +98,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6 animate-fade-in">
+            <div className="flex justify-center mb-6 mt-4 animate-fade-in">
               <Badge variant="secondary" className="px-4 py-2 text-sm bg-white/20 backdrop-blur-sm border-white/30 text-white">
                 <Sparkles className="w-4 h-4 mr-2 inline" />
                 Licensed • Bonded • Insured in Illinois
@@ -375,7 +375,7 @@ export default function Home() {
 
 
       {/* Estimate CTA Section */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -398,7 +398,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final CTA Section */}
       <section className="gradient-hero text-primary-foreground py-16">
