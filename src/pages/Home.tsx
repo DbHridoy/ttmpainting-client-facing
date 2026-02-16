@@ -128,13 +128,15 @@ export default function Home() {
             <div className="mt-12 mb-12 aspect-video w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/bLbUIevOxzY"
+                src="https://www.youtube.com/embed/gRL__aRxjW4?rel=0"
                 title="Company Introduction"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              />
+              ></iframe>
             </div>
+
+
 
           </div>
         </div>
