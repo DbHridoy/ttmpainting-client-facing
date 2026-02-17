@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                <a href="tel:6302779414" className="hover:text-accent transition-smooth">
+                <a href="tel:+1 (872) 666 8770" className="hover:text-accent transition-smooth">
                   +1 (872) 666 8770
                 </a>
               </div>
@@ -48,7 +48,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/about" className="hover:text-accent transition-smooth">About Us</Link></li>
               <li><Link to="/portfolio" className="hover:text-accent transition-smooth">Portfolio</Link></li>
-              
+
               <li><Link to="/service-areas" className="hover:text-accent transition-smooth">Service Areas</Link></li>
               <li><Link to="/faqs" className="hover:text-accent transition-smooth">FAQs</Link></li>
             </ul>

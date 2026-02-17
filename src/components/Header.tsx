@@ -27,7 +27,7 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
-              <a href="tel:6302779414" className="flex items-center hover:text-accent transition-smooth">
+              <a href="tel:+1 (872) 666 8770" className="flex items-center hover:text-accent transition-smooth">
                 <Phone className="h-4 w-4 mr-1" />
                 +1 (872) 666 8770
               </a>
@@ -52,9 +52,9 @@ export default function Header() {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <img 
+              <img
                 src={ttmLogo}
-                alt="TTM Painting Logo" 
+                alt="TTM Painting Logo"
                 className="h-12 w-12 mr-3"
               />
               <div className="text-2xl font-bold text-primary">
@@ -68,9 +68,8 @@ export default function Header() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`text-sm font-medium transition-smooth hover:text-accent ${
-                    location.pathname === item.href ? "text-accent" : "text-foreground"
-                  }`}
+                  className={`text-sm font-medium transition-smooth hover:text-accent ${location.pathname === item.href ? "text-accent" : "text-foreground"
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -91,9 +90,8 @@ export default function Header() {
                       <Link
                         key={item.name}
                         to={item.href}
-                        className={`text-lg font-medium transition-smooth hover:text-accent ${
-                          location.pathname === item.href ? "text-accent" : "text-foreground"
-                        }`}
+                        className={`text-lg font-medium transition-smooth hover:text-accent ${location.pathname === item.href ? "text-accent" : "text-foreground"
+                          }`}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}

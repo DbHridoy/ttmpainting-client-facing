@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Trees, 
-  Shield, 
-  Droplets, 
+import {
+  Trees,
+  Shield,
+  Droplets,
   CheckCircle,
   Clock,
   Brush,
@@ -68,7 +68,7 @@ export default function DeckFenceStaining() {
               Professional Deck & Fence Staining
             </h1>
             <p className="text-xl mb-8 text-primary-foreground/90">
-              Protect and enhance your outdoor wood structures with our premium staining services. 
+              Protect and enhance your outdoor wood structures with our premium staining services.
               Expert application with quality materials for lasting beauty and protection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -76,7 +76,7 @@ export default function DeckFenceStaining() {
                 <Link to="/get-estimate">Get Free Staining Estimate</Link>
               </Button>
               <Button size="lg" variant="outline-light" asChild>
-                <a href="tel:6302779414">Call +1 (872) 666 8770</a>
+                <a href="tel:+1 (872) 666 8770">Call +1 (872) 666 8770</a>
               </Button>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function DeckFenceStaining() {
               Comprehensive wood staining solutions for all your outdoor structures.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth">
@@ -125,7 +125,7 @@ export default function DeckFenceStaining() {
               Protect your investment and maintain the beauty of your outdoor wood structures.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center">
@@ -149,7 +149,7 @@ export default function DeckFenceStaining() {
               Professional preparation and application for superior results.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
