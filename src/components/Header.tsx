@@ -99,7 +99,9 @@ export default function Header() {
                     ))}
                     <div className="pt-4 border-t">
                       <Button variant="accent" size="lg" asChild className="w-full">
-                        <Link to="/get-estimate">Get Free Estimate</Link>
+                        <Link to="/get-estimate" onClick={() => setIsOpen(false)}>
+                          Get Free Estimate
+                        </Link>
                       </Button>
                     </div>
                   </div>

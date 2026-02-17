@@ -50,14 +50,17 @@ export default function GetEstimate() {
     city: "",
     state: "Illinois",
     zipCode: "",
+    yearBuilt: "",
     leadSource: "",
     rating: 0,
   });
 
   const leadSources = ["Door to Door", "Inbound", "Social"];
-  const fieldClassName =
-    "w-full rounded-lg border border-input bg-background px-3 py-2 text-sm sm:text-base";
-  const labelClassName = "mb-2 block text-sm font-semibold sm:text-base";
+  const currentYear = new Date().getFullYear();
+  const yearBuiltOptions = Array.from({ length: currentYear - 1900 + 1 }, (_, index) =>
+    String(currentYear - index),
+  );
+  const leadsPath = "/s/sales-rep/leads";
 
   useEffect(() => {
     const styleId = "jobber-work-request-style";
@@ -175,30 +178,30 @@ export default function GetEstimate() {
                 ) : (
                   <form
                     onSubmit={handleCreateClient}
-                    className="space-y-6 rounded-xl border border-border bg-background p-4 sm:p-6"
+                    className="space-y-6 bg-white section-pad border p-4 rounded-lg"
                   >
                     {/* Client Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className={labelClassName}>
+                        <label className="block text-sm sm:text-base font-semibold mb-2">
                           Client Name <RequiredMark />
                         </label>
                         <input
                           value={formData.clientName}
                           onChange={(e) => handleInputChange("clientName", e.target.value)}
-                          className={fieldClassName}
+                          className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className={labelClassName}>
+                        <label className="block text-sm sm:text-base font-semibold mb-2">
                           Partner Name
                         </label>
                         <input
                           value={formData.partnerName}
                           onChange={(e) => handleInputChange("partnerName", e.target.value)}
-                          className={fieldClassName}
+                          className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                         />
                       </div>
                     </div>
@@ -206,27 +209,27 @@ export default function GetEstimate() {
                     {/* Contact */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className={labelClassName}>
+                        <label className="block text-sm sm:text-base font-semibold mb-2">
                           Phone <RequiredMark />
                         </label>
                         <input
                           type="tel"
                           value={formData.phoneNumber}
                           onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
-                          className={fieldClassName}
+                          className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className={labelClassName}>
+                        <label className="block text-sm sm:text-base font-semibold mb-2">
                           Email
                         </label>
                         <input
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
-                          className={fieldClassName}
+                          className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                         />
                       </div>
                     </div>
@@ -234,55 +237,73 @@ export default function GetEstimate() {
                     {/* Address */}
                     <div className="space-y-4">
                       <div>
-                        <label className={labelClassName}>
+                        <label className="block text-sm sm:text-base font-semibold mb-2">
                           Street Address <RequiredMark />
                         </label>
                         <input
                           value={formData.address}
                           onChange={(e) => handleInputChange("address", e.target.value)}
-                          className={fieldClassName}
+                          className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                           required
                         />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                          <label className={labelClassName}>
+                          <label className="block text-sm sm:text-base font-semibold mb-2">
                             City <RequiredMark />
                           </label>
                           <input
                             value={formData.city}
                             onChange={(e) => handleInputChange("city", e.target.value)}
-                            className={fieldClassName}
+                            className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                             required
                           />
                         </div>
                         <div>
-                          <label className={labelClassName}>
-                            State <RequiredMark />
+                          <label className="block text-sm sm:text-base font-semibold mb-2">
+                            State
                           </label>
                           <input
                             value={formData.state}
                             onChange={(e) => handleInputChange("state", e.target.value)}
-                            className={fieldClassName}
-                            required
+                            className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                           />
                         </div>
                         <div>
-                          <label className={labelClassName}>
-                            Zip Code <RequiredMark />
+                          <label className="block text-sm sm:text-base font-semibold mb-2">
+                            Zip Code
                           </label>
                           <input
                             value={formData.zipCode}
                             onChange={(e) => handleInputChange("zipCode", e.target.value)}
-                            className={fieldClassName}
-                            required
+                            className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
                             inputMode="numeric"
                           />
                         </div>
                       </div>
                     </div>
 
+                    {/* Year Built */}
+                    <div>
+                      <label className="block text-sm sm:text-base font-semibold mb-2">
+                        Year Built <RequiredMark />
+                      </label>
+                      <select
+                        value={formData.yearBuilt}
+                        onChange={(e) => handleInputChange("yearBuilt", e.target.value)}
+                        className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
+                        required
+                      >
+                        <option value="">Select year</option>
+                        {yearBuiltOptions.map((year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
 
+                    
                     {/* Notes */}
                     <ClientNote
                       note={note}
@@ -292,18 +313,18 @@ export default function GetEstimate() {
                     />
 
                     {/* Actions */}
-                    <div className="flex flex-col-reverse gap-3 border-t border-border pt-4 sm:flex-row sm:justify-end">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                       <button
                         type="button"
-                        onClick={() => navigate("/s/sales-rep/leads")}
-                        className="w-full rounded-lg border py-2 text-sm sm:w-auto sm:min-w-[140px] sm:text-base"
+                        onClick={() => navigate(leadsPath)}
+                        className="w-full sm:flex-1 border py-2 rounded-lg text-sm sm:text-base"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full rounded-lg bg-blue-600 py-2 text-sm text-white sm:w-auto sm:min-w-[140px] sm:text-base"
+                        className="w-full sm:flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm sm:text-base"
                       >
                         {isLoading ? "Submitting..." : "Submit"}
                       </button>

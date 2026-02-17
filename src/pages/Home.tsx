@@ -110,21 +110,6 @@ export default function Home() {
                 One Home at a Time
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-3xl mx-auto animate-fade-in stagger-1">
-              Professional painting services in the Chicago suburbs — built on consistency,
-              quality materials, and a 1-3 year workmanship warranty you can trust.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in stagger-2">
-              <Button size="lg" className="group text-lg px-8 py-6 bg-white text-primary hover:bg-white/90 shadow-lg font-semibold" asChild>
-                <Link to="/get-estimate">
-                  Get Your Free Estimate
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline-light" asChild className="text-lg px-8 py-6 font-semibold">
-                <Link to="/portfolio">View Our Work</Link>
-              </Button>
-            </div>
             <div className="mt-12 mb-12 aspect-video w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl">
               <iframe
                 className="w-full h-full"
@@ -135,6 +120,22 @@ export default function Home() {
                 allowFullScreen
               ></iframe>
             </div>
+            <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-3xl mx-auto animate-fade-in stagger-1">
+              Professional painting services in the Chicago suburbs — built on consistency,
+              quality materials, and a 1-3 year workmanship warranty you can trust.
+            </p>
+            <div className="flex flex-col sm:flex-row mb-4 gap-4 justify-center animate-fade-in stagger-2">
+              <Button size="lg" className="group text-lg px-8 py-6 bg-white text-primary hover:bg-white/90 shadow-lg font-semibold" asChild>
+                <Link to="/get-estimate">
+                  Get Your Free Estimate
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline-light" asChild className="text-lg px-8 py-6 font-semibold">
+                <Link to="/portfolio">View Our Work</Link>
+              </Button>
+            </div>
+            
 
 
 
