@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Building, 
-  Store, 
-  Warehouse, 
+import {
+  Building,
+  Store,
+  Warehouse,
   CheckCircle,
   Clock,
   Shield,
@@ -77,7 +77,7 @@ export default function Commercial() {
               Professional Commercial Painting
             </h1>
             <p className="text-xl mb-8 text-primary-foreground/90">
-              Reliable commercial painting services for businesses throughout Illinois. 
+              Reliable commercial painting services for businesses throughout Illinois.
               From retail spaces to office buildings, we deliver quality results with minimal disruption to your operations.
             </p>
             <Button size="lg" variant="accent" asChild>
@@ -96,7 +96,7 @@ export default function Commercial() {
               Comprehensive painting solutions for every type of commercial property.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth">
@@ -132,7 +132,7 @@ export default function Commercial() {
               We understand that your business can't afford delays or disruptions.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((advantage, index) => (
               <div key={index} className="text-center">
@@ -156,17 +156,17 @@ export default function Commercial() {
               Serving businesses throughout a large region of Illinois with reliable, professional service.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <Card className="text-center shadow-soft">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-2">Northern Illinois</h3>
-                <p className="text-muted-foreground text-sm">Rock Island to Chicago Suburbs</p>
+                <p className="text-muted-foreground text-sm">Rock Island to Greater Chicago Area</p>
               </CardContent>
             </Card>
             <Card className="text-center shadow-soft border-accent">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-2">Serving Chicago Suburbs</h3>
+                <h3 className="text-lg font-semibold mb-2">Serving Greater Chicago Area</h3>
                 <p className="text-muted-foreground text-sm">Convenient location for efficient service</p>
               </CardContent>
             </Card>
@@ -189,7 +189,7 @@ export default function Commercial() {
               Streamlined approach designed to minimize business disruption.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">

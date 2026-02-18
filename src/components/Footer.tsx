@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                Chicago Suburbs & Surrounding Areas
+                Greater Chicago Area & Surrounding Areas
               </div>
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
@@ -78,7 +78,7 @@ export default function Footer() {
         <div className="border-t border-primary-light mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm">
             <div>
-              © 2024 TTM Painting. All rights reserved. Licensed, Bonded & Insured in Illinois.
+              © 2026 TTM Painting. All rights reserved. Licensed, Bonded & Insured in Illinois.
             </div>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link to="/privacy" className="hover:text-accent transition-smooth">Privacy Policy</Link>

@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -54,7 +54,7 @@ const generalFAQs = [
   },
   {
     question: "What areas do you serve?",
-    answer: "We primarily serve the Chicago suburbs and surrounding areas throughout Illinois. We're happy to travel for quality projects throughout the region."
+    answer: "We primarily serve the Greater Chicago Area and surrounding areas throughout Illinois. We're happy to travel for quality projects throughout the region."
   },
   {
     question: "How many homes have you painted?",
@@ -96,7 +96,7 @@ export default function FAQ() {
               <span className="text-accent"> Questions</span>
             </h1>
             <p className="text-xl mb-8 text-primary-foreground/90">
-              Get answers to the most common questions about our painting services, 
+              Get answers to the most common questions about our painting services,
               specializing in exterior painting with exclusive Sherwin Williams products.
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function FAQ() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            
+
             {/* Exterior Painting FAQs */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-8 text-center">Exterior Painting Questions</h2>

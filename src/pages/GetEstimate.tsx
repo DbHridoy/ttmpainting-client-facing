@@ -303,7 +303,7 @@ export default function GetEstimate() {
                       </select>
                     </div>
 
-                    
+
                     {/* Notes */}
                     <ClientNote
                       note={note}
@@ -385,7 +385,7 @@ export default function GetEstimate() {
                   <div>
                     <div className="font-medium">Service Area</div>
                     <div className="text-sm text-muted-foreground">
-                      Rock Island to Chicago suburbs, Galena to Champaign & all areas in between
+                      Rock Island to Greater Chicago Area, Galena to Champaign & all areas in between
                     </div>
                   </div>
                 </div>

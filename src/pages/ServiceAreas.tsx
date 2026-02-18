@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  MapPin, 
-  Home, 
-  Car, 
+import {
+  MapPin,
+  Home,
+  Car,
   CheckCircle,
   Clock,
   Phone
@@ -18,7 +18,7 @@ const mainAreas = [
     description: "Quad Cities area and surrounding communities"
   },
   {
-    region: "Chicago Suburbs", 
+    region: "Greater Chicago Area",
     cities: ["Naperville", "Aurora", "Joliet", "Schaumburg", "Palatine"],
     description: "Our primary service area"
   },
@@ -77,7 +77,7 @@ export default function ServiceAreas() {
               <span className="text-accent"> Statewide</span>
             </h1>
             <p className="text-xl mb-8 text-primary-foreground/90">
-              Based in the Chicago suburbs, we provide professional painting services throughout the greater Chicago area and surrounding Illinois communities.
+              Based in the Greater Chicago Area, we provide professional painting services throughout the greater Chicago area and surrounding Illinois communities.
             </p>
             <Button size="lg" variant="accent" asChild>
               <Link to="/get-estimate">Get Free Estimate</Link>
@@ -92,10 +92,10 @@ export default function ServiceAreas() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Where We Serve</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Extensive coverage area throughout the Chicago suburbs and surrounding Illinois communities.
+              Extensive coverage area throughout the Greater Chicago Area and surrounding Illinois communities.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {mainAreas.map((area, index) => (
               <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth">
@@ -131,7 +131,7 @@ export default function ServiceAreas() {
               Complete painting and related services available throughout our service area.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {services.map((service, index) => (
               <div key={index} className="text-center">
@@ -153,10 +153,10 @@ export default function ServiceAreas() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Our Location Works for You</h2>
               <p className="text-xl text-muted-foreground">
-                Our Chicago suburbs location allows us to efficiently serve communities throughout the area.
+                Our Greater Chicago Area location allows us to efficiently serve communities throughout the area.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-6">Strategic Location Benefits</h3>
@@ -164,7 +164,7 @@ export default function ServiceAreas() {
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-success mr-3 mt-1 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold">Chicago Suburbs Base:</span> Convenient location provides efficient service to all areas
+                      <span className="font-semibold">Greater Chicago Area Base:</span> Convenient location provides efficient service to all areas
                     </div>
                   </li>
                   <li className="flex items-start">
@@ -195,7 +195,7 @@ export default function ServiceAreas() {
                   <div className="space-y-4">
                     <div>
                       <div className="font-semibold">West to East</div>
-                      <div className="text-muted-foreground">Rock Island → Chicago Suburbs</div>
+                      <div className="text-muted-foreground">Rock Island → Greater Chicago Area</div>
                     </div>
                     <div>
                       <div className="font-semibold">North to South</div>
@@ -203,7 +203,7 @@ export default function ServiceAreas() {
                     </div>
                     <div className="bg-accent/5 p-4 rounded-lg mt-6">
                       <div className="font-semibold text-accent">Service Area</div>
-                      <div className="text-muted-foreground">Chicago Suburbs, Illinois</div>
+                      <div className="text-muted-foreground">Greater Chicago Area, Illinois</div>
                     </div>
                   </div>
                 </CardContent>

@@ -121,7 +121,7 @@ export default function Home() {
               ></iframe>
             </div>
             <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-3xl mx-auto animate-fade-in stagger-1">
-              Professional painting services in the Chicago suburbs — built on consistency,
+              Professional painting services in the Greater Chicago Area — built on consistency,
               quality materials, and a 1-3 year workmanship warranty you can trust.
             </p>
             <div className="flex flex-col sm:flex-row mb-4 gap-4 justify-center animate-fade-in stagger-2">
@@ -135,7 +135,7 @@ export default function Home() {
                 <Link to="/portfolio">View Our Work</Link>
               </Button>
             </div>
-            
+
 
 
 
@@ -171,7 +171,7 @@ export default function Home() {
               </div>
               <div className="text-left">
                 <div className="font-semibold">50+ Homes Painted</div>
-                <div className="text-sm text-muted-foreground">Throughout Chicago suburbs</div>
+                <div className="text-sm text-muted-foreground">Throughout Greater Chicago Area</div>
               </div>
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Recent Work</h2>
             <p className="text-xl text-muted-foreground">
-              See the amazing transformations we've completed for homeowners throughout the Chicago suburbs and surrounding areas.
+              See the amazing transformations we've completed for homeowners throughout the Greater Chicago Area and surrounding areas.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -410,7 +410,7 @@ export default function Home() {
             Experience the TTM Painting Difference
           </h2>
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Join 50+ satisfied customers throughout the Chicago suburbs and surrounding areas.
+            Join 50+ satisfied customers throughout the Greater Chicago Area and surrounding areas.
           </p>
           <Button size="lg" className="group text-lg px-8 py-6 bg-white text-primary hover:bg-white/90 font-semibold shadow-lg" asChild>
             <Link to="/get-estimate">
