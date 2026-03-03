@@ -157,7 +157,7 @@ export default function GetEstimate() {
               <CardHeader className="space-y-2">
                 <CardTitle className="text-2xl">Request Your Free Estimate</CardTitle>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you within 24 hours with a detailed estimate.
+                  Fill out the form below and we'll get back to you within 24 hours to schedule your estimate.
                 </p>
                 <div className="mt-6 text-center text-sm text-muted-foreground">
                   <p>
