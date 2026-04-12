@@ -76,7 +76,7 @@ export default function DeckFenceStaining() {
                 <Link to="/get-estimate">Get Free Staining Estimate</Link>
               </Button>
               <Button size="lg" variant="outline-light" asChild>
-                <a href="tel:+1 (872) 666 8770">Call +1 (872) 666 8770</a>
+                <a href="tel:+16302779414">Call +16302779414</a>
               </Button>
             </div>
           </div>

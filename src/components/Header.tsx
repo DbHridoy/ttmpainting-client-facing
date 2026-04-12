@@ -27,9 +27,9 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
-              <a href="tel:+1 (872) 666 8770" className="flex items-center hover:text-accent transition-smooth">
+              <a href="tel:+16302779414" className="flex items-center hover:text-accent transition-smooth">
                 <Phone className="h-4 w-4 mr-1" />
-                +1 (872) 666 8770
+                +16302779414
               </a>
               <a href="mailto:info@ttmpainting.com" className="flex items-center hover:text-accent transition-smooth">
                 <Mail className="h-4 w-4 mr-1" />
