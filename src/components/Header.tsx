@@ -29,7 +29,7 @@ export default function Header() {
             <div className="flex items-center space-x-4">
               <a href="tel:+16302779414" className="flex items-center hover:text-accent transition-smooth">
                 <Phone className="h-4 w-4 mr-1" />
-                +16302779414
+                (630) 277-9414
               </a>
               <a href="mailto:info@ttmpainting.com" className="flex items-center hover:text-accent transition-smooth">
                 <Mail className="h-4 w-4 mr-1" />
