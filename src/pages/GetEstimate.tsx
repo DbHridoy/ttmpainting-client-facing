@@ -33,6 +33,20 @@ const JOBBER_STYLE_HREF =
 const JOBBER_FORM_URL =
   "https://clienthub.getjobber.com/client_hubs/3f2be4ce-f6a2-414c-95b4-8211aaed3546/public/work_request/embedded_work_request_form";
 
+function formatPhoneNumber(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 10);
+
+  if (digits.length <= 3) {
+    return digits ? `(${digits}` : "";
+  }
+
+  if (digits.length <= 6) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  }
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function GetEstimate() {
   const navigate = useNavigate();
   const [createClient, { isLoading }] = useCreateClientMutation();
@@ -89,7 +103,8 @@ export default function GetEstimate() {
   }, []);
 
   const handleInputChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    const nextValue = field === "phoneNumber" ? formatPhoneNumber(value) : value;
+    setFormData((prev) => ({ ...prev, [field]: nextValue }));
   };
 
   const handleCreateClient = async (e) => {
@@ -217,6 +232,9 @@ export default function GetEstimate() {
                           value={formData.phoneNumber}
                           onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
                           className="w-full border px-3 py-2 rounded-lg text-sm sm:text-base"
+                          placeholder="(630) 277-9414"
+                          inputMode="tel"
+                          maxLength={14}
                           required
                         />
                       </div>
@@ -367,7 +385,7 @@ export default function GetEstimate() {
                   <div>
                     <div className="font-medium">Call for Immediate Service</div>
                     <a href="tel:+16302779414" className="text-accent hover:underline">
-                      +16302779414
+                      (630) 277-9414
                     </a>
                   </div>
                 </div>
