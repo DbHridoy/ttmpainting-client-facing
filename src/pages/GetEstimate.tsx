@@ -199,7 +199,7 @@ export default function GetEstimate() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm sm:text-base font-semibold mb-2">
-                          Client Name <RequiredMark />
+                          Name <RequiredMark />
                         </label>
                         <input
                           value={formData.clientName}
